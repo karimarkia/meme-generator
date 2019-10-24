@@ -306,6 +306,7 @@ function returnToGallery(ev) {
 }
 
 function onClickCanvas(ev, isMobile = false) {
+    ev.preventDefault()
 
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
@@ -399,6 +400,7 @@ function onMoveCanvasEl(direction) {
 }
 
 function drag(ev) {
+    ev.preventDefault()
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
     // if on mobile - different calc
