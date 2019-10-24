@@ -1,0 +1,88 @@
+
+
+.about {
+    grid-area: about;
+    background-color: #cfcfcf;
+    color: white;
+}
+
+.grid-container {
+    grid-area: about;
+}
+
+.about h1 {
+    font-family: Maven Pro, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    color:  #ff7f00;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.about h3 {
+    font-family: Maven Pro, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 0 10px;
+    color: #000000;
+}
+
+.about p {
+    font-weight: 400;
+    font-size: 15px;
+    /* line-height: 21.56px; */
+}
+
+.about-container {
+    width: 80%;
+    border-left: #ffffff solid 1px;
+    border-right: #ffffff solid 1px;
+    padding: 1rem;
+}
+
+.about-logo {
+    background-size: contain;
+    background-image: url("../img/user.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    min-height: 100px;
+    width: 50%;
+    min-width: 100px;
+    /* margin: 0 20px 0 0; */
+}
+
+.about-text-container {
+    margin-left: 1rem;
+}
+
+.about-description {
+    color: #6b6b6b;
+}
+
+
+.media-links {
+    width: 220px;
+}
+
+.media-links a {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #e5e5e5;
+    color: white;
+    transition: .3s;
+    text-decoration: none;
+}
+
+.media-links a:first-child:hover {
+    background-color: #516fad;
+}
+
+.media-links a:nth-child(2):hover {
+    background-color: #1d9ceb;
+}
+
+.media-links a:nth-child(3):hover {
+    background-color: #105bf2;
+}
+
+.media-links a:last-child:hover {
+    background-color: #e54786;
+}

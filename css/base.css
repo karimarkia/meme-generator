@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body, h1, h2, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 18px;
+    font-family: 'Alef', sans-serif;
+    background-color: #eeeeee;
+}
+
+ul {
+    list-style-type: none;
+}

@@ -1,0 +1,36 @@
+/* GRID */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 55px 5fr 4fr 1fr 40px ;
+    grid-template-areas:
+    'header'
+    'main'
+    'aside'
+    'controller'
+    'footer';
+    grid-row-gap: 10px;
+    /* Without height of address bar in chrome mobile */
+    height: calc(100vh - 56px);
+}
+
+body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{
+    display: none;
+}
+
+body.gallery .grid-container {
+    grid-template-columns: 100%;
+    width: 100%;
+    grid-template-rows: 55px 1fr 1fr;
+    grid-template-areas:
+    'header'
+    'gallery'
+    'about'
+    /* 'about' */
+    'footer';
+}
+
+.grid-container > * {
+    color:white;
+}
