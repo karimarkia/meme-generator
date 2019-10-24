@@ -5,8 +5,8 @@ var gCtx;
 var gIsMoving;
 var gPrevPos;
 
+//onLoad page
 function init() {
-
     gIsMoving = false;
     gPrevPos = {};
 
@@ -19,6 +19,7 @@ function init() {
     initGalleryAndRenderKeywords()
 }
 
+//render functions
 function initGalleryAndRenderKeywords() {
     renderGallery(gImgs);
     renderKeywords();
@@ -64,7 +65,7 @@ function renderKeywordsDatalist() {
     elDatalist.innerHTML = strHtmls.join('');
 }
 
-// render the red li
+// render the li
 function renderKeywords() {
     gKeyWordsMap = getFromStorage('keywordsMap');
     var keywords = Object.keys(gKeyWordsMap);
@@ -92,7 +93,7 @@ function onSelectImg(id) {
     document.querySelector('main').style.display = 'flex';
     createMeme(id);
     initCanvas();
-    //did a change
+    //did a change-need to check it 
     renderTextEditor();
     renderMeme();
 }
@@ -119,7 +120,8 @@ function initCanvas() {
         height: gCanvas.width / imageRatio
     };
 
-    // if computed height is smaller than canvas - miminize canvas height
+    // set canvas width and height/this is what Yovel told us that we can do to set the canvas height and
+    // width by the image sizes , got an idea from google 
     if (canvasComputed.height < gCanvas.height) {
         gCanvas.height = canvasComputed.height;
         console.log(gCanvas.height);
@@ -130,7 +132,6 @@ function initCanvas() {
             gCanvas.width = img.width / ratio;
         }
     }
-
     // update aside to canvas height if desktop
     if (window.innerWidth >= 920) {
         var asideEl = document.querySelector('aside');
@@ -139,15 +140,12 @@ function initCanvas() {
     }
 }
 
-
 function setTextWidth(line) {
     var txt = line.txt;
     // console.log(txt);
-
     gCtx.font = `${line.size}px ${line.fontFamily}`;
     var width = gCtx.measureText(txt).width;
     // console.log(width);
-
     line.width = width;
 }
 
@@ -200,7 +198,6 @@ function getCurrentValues() {
         font
     }
 }
-
 
 // called when key is pressed while user on input line text
 function onKeyPress(ev) {
@@ -256,12 +253,10 @@ function onAddNewLine() {
     renderMeme();
 }
 
-
 //delete line function
 function onEraseClick() {
     gMeme.txts.forEach(txt => {
         deleteLine(txt.id)
-
     })
     renderMeme()
 }
@@ -283,7 +278,6 @@ function onChangeStrokeColor(stroke) {
 
 function onChangeFontFamily(font) {
     // console.log(font);
-
     if (gMeme.selectedLine) {
         changeFont(gMeme.selectedLine, font)
         renderMeme()
@@ -311,34 +305,27 @@ function returnToGallery(ev) {
     renderTextEditor()
 }
 
-
-
 function onClickCanvas(ev, isMobile = false) {
 
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-
     // if on mobile - different calc
     if (isMobile) {
         mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
         mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
     }
-
     gPrevPos.x = mouseX;
     gPrevPos.y = mouseY;
-
     // check if clicked on line
     var line = gMeme.txts.find(line => {
         return (mouseY < line.y + 15 && mouseY > line.y - line.size - 10 &&
             mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
-
     var eventToAdd = 'mousemove';
     // if on mobile - different event
     if (isMobile) {
         eventToAdd = 'touchmove';
     }
-
     // if a line was selected
     if (line) {
         line.isSelected = true;
@@ -351,7 +338,6 @@ function onClickCanvas(ev, isMobile = false) {
             gCanvas.removeEventListener('touchmove', drag, false);
         }
     }
-
     // if clicked on different line
     // (or not on any line when there was a line selected)
     if (gMeme.selectedLine !== line) {
@@ -362,7 +348,6 @@ function onClickCanvas(ev, isMobile = false) {
         // update current line
         gMeme.selectedLine = line;
     }
-
     // render text editor according to line
     renderTextEditor(line);
     renderMeme();
@@ -375,24 +360,19 @@ function onMouseUp() {
     }
 }
 
-
 function onTouchStart(ev) {
     onClickCanvas(ev, true);
 }
-
-
 
 // render meme
 function renderMeme() {
     // clean canvas
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-
     // render img
     var img;
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
     drawImgOnCanvas(img);
-
     // render lines
     gMeme.txts.forEach(line => {
         if (line.txt) {
@@ -400,20 +380,16 @@ function renderMeme() {
                 setTextWidth(line);
                 markLine(line);
             }
-
             gCtx.font = `${line.size}px ${line.fontFamily}`;
-
             // paint inner text 
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
-
             // paint stroke text 
             gCtx.strokeStyle = line.strokeColor;
             gCtx.strokeText(line.txt, line.x, line.y);
         }
     })
 }
-
 
 function onMoveCanvasEl(direction) {
     if (gMeme.selectedLine) {
@@ -422,30 +398,23 @@ function onMoveCanvasEl(direction) {
     }
 }
 
-
 function drag(ev) {
-
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-
     // if on mobile - different calc
     if (ev.type === 'touchmove') {
         mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
         mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
     }
-
     var newX = gMeme.selectedLine.x + (mouseX - gPrevPos.x);
     var newY = gMeme.selectedLine.y + (mouseY - gPrevPos.y);
-
     // if in range of canvas (relevant for mobile)
     if (newX + gMeme.selectedLine.width > 0 && newX < gCanvas.width &&
         newY > 0 && newY - gMeme.selectedLine.size < gCanvas.height) {
         gMeme.selectedLine.x = newX;
         gMeme.selectedLine.y = newY;
-
         gPrevPos.x = mouseX;
         gPrevPos.y = mouseY;
-
         renderMeme();
     }
 }

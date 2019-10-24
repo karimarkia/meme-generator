@@ -54,9 +54,6 @@ function addNewLine(currentValues) {
         font = 'impact';
     }
     gMeme.selectedLine = createLine(size, x, y, color, strokeColor, font);
-
-    
-
 }
 
 function checkIfLineEmpty(line) {
@@ -73,7 +70,6 @@ function deleteLine(line) {
     var lineIdx = gMeme.txts.findIndex(currLine => {
         return line.id === currLine.id;
     })
-
     gMeme.selectedLine = undefined;
     gMeme.txts.splice(lineIdx, 1);
 }
@@ -121,7 +117,6 @@ function changeFont(line, font) {
 function changeFontSize(line, value) {
     line.size += value
 }
-
 
 function moveCanvasEl(line, direction) {
     var moveLenght = 10;

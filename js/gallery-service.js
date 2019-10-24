@@ -33,15 +33,12 @@ function createImg(url, keyWords) {
         id: gId++,
         url,
         keyWords
-
     };
-
 }
 
 function getImageById(id) {
     return document.querySelector(`[data-id='${id}']`);
 }
-
 
 function updateKeyWordsMap(key) {
     if (gKeyWordsMap[key]) {
@@ -66,7 +63,6 @@ function getImgsByFilter(keyword) {
             return imgKewWord === keyword
         })
     })
-    console.log(filteredImgs);
-    
+    // console.log(filteredImgs);
     return filteredImgs;
 }

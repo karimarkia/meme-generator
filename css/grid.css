@@ -3,19 +3,22 @@
 .grid-container {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 55px 5fr 4fr 1fr 40px ;
+    grid-template-rows: 55px 5fr 4fr 1fr 40px;
     grid-template-areas:
-    'header'
-    'main'
-    'aside'
-    'controller'
-    'footer';
+        'header'
+        'main'
+        'aside'
+        'controller'
+        'footer';
     grid-row-gap: 10px;
     /* Without height of address bar in chrome mobile */
     height: calc(100vh - 56px);
 }
 
-body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{
+body.gallery aside,
+body.gallery .tools,
+body.gallery .controller,
+body.gallery #canvas {
     display: none;
 }
 
@@ -24,13 +27,13 @@ body.gallery .grid-container {
     width: 100%;
     grid-template-rows: 55px 1fr 1fr;
     grid-template-areas:
-    'header'
-    'gallery'
-    'about'
-    /* 'about' */
-    'footer';
+        'header'
+        'gallery'
+        'about'
+        /* 'about' */
+        'footer';
 }
 
-.grid-container > * {
-    color:white;
+.grid-container>* {
+    color: white;
 }

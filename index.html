@@ -20,7 +20,7 @@
             <img src="img/layer-2.png" srcset="img/layer-2@2x.png 2x,
                          img/layer-2@3x.png 3x" class="Layer-2">
             <nav id="mainMenu" class="main-menu-wrapper">
-                <ul class="main-menu clean-list flex space-around space-between  ">
+                <ul class="main-menu clean-list flex space-around space-between   ">
                     <li>
                         <a href="#">Gallery</a>
                     </li>
@@ -39,23 +39,18 @@
                 <input class="keywords-input" list="keywords-list" data-translate="searchKeyword"
                     placeholder="Enter search word" onchange="onKeywordSelect(value)">
                 <datalist id="keywords-list">
-
+                    <!-- render keys -->
                 </datalist>
-
                 <ul class="keywords">
-
+                    <!-- render keys -->
                 </ul>
-
             </div>
-
             <ul id="gallery" class="imgs-list clean-list">
             </ul>
-
             <div class="gallery-items">
                 <ul>
                     <!-- render with js  -->
                     <!-- done-work -->
-
                 </ul>
             </div>
         </div>
@@ -73,7 +68,7 @@
                     <!-- New line -->
                     <a href="#" onclick="onAddNewLine()" class="align-self-center" title="Add New Line"><i
                             class="fas fa-plus"></i></a>
-                    <!-- Eraser -->
+                    <!-- Eraser / not done yet (bug)-->
                     <a href="#" onclick="onEraseClick()" class="align-self-center"><i class="fas fa-trash-alt"></i></a>
                 </div>
                 <div class="editing-options flex space-between">
@@ -105,20 +100,14 @@
                     <div class="sizenmove flex space-between">
                         <!-- Font Size -->
                         <div class="font-size-control align-self-center flex flex-column space-between align-center">
-                            <!-- <label class="flex"> -->
-                            <!-- <i onclick="onChangeFontSize('plus')" class="fas fa-plus"></i> -->
                             <img src="img/increase font - icon.png" alt="" onclick="onChangeFontSize('plus')">
                             <img src="img/decrease font - icon.png" alt="" onclick="onChangeFontSize('minus')">
-                            <!-- <i onclick="onChangeFontSize('minus')" class="fas fa-minus"></i> -->
-                            <!-- </label> -->
                         </div>
                         <div class="line-move align-self-center">
-                            <!-- <label class="arrows"> -->
                             <i onclick="onMoveCanvasEl('left')" class="fas fa-arrow-left arrow-left"></i>
                             <i onclick="onMoveCanvasEl('up')" class="fas fa-arrow-up arrow-up"></i>
                             <i onclick="onMoveCanvasEl('down')" class="fas fa-arrow-down arrow-down"></i>
                             <i onclick="onMoveCanvasEl('right')" class="fas fa-arrow-right arrow-right"></i>
-                            <!-- </label> -->
                         </div>
                     </div>
                 </div>
@@ -130,7 +119,6 @@
                 <i class="fas fa-arrow-left"></i>
                 <span data-translate="btnback" title="Back to gallery">Back</span>
             </a>
-
             <a href="" class="btn btn-control" onclick="onShareMeme(this ,event)">
                 <i class="fas fa-share-alt"></i>
                 <span data-translate="btnshare" title="Share with friends">Share</span>
@@ -156,7 +144,6 @@
                     <h3>Full-stack programer</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea deleniti magnam porro, quibusdam
                         distinctio aut
-
                     </p>
                     <div class="media-links flex space-between">
                         <a href="#" class="flex align-center space-around">
@@ -176,7 +163,7 @@
             </div>
         </section>
 
-        <!-- delete modal  -->
+        <!-- delete modal/need to code it   -->
         <!-- <div class="erase-modal-container">
             <div class="modal-content flex flex-column space-between">
                 <h2 class="align-self-center whatToDelete" data-translate="modalheadline">Are you sure you want to delete
@@ -187,8 +174,6 @@
                 </div>
             </div>
         </div> -->
-
-
         <footer>
             <img src="img/layer-2.png" srcset="img/layer-2@2x.png 2x,
                  img/layer-2@3x.png 3x" class="Layer-2">
@@ -196,10 +181,7 @@
         </footer>
     </div>
 
-
-
-
-    <!-- Tool to render fonts for first time -->
+    <!--render fonts for first time -->
     <div class="preLoadFonts" style="visibility: hidden">
         <span style="font-family: 'impact'"></span>
         <span style="font-family: 'arial'"></span>
@@ -208,6 +190,7 @@
         <span style="font-family: 'ShadowsIntoLight'"></span>
     </div>
 
+    <!-- js scripts -->
     <script src="js/util-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-service.js"></script>

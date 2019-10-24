@@ -1,22 +1,13 @@
 header {
-    grid-area: header; 
+    grid-area: header;
     /* display: flex; */
     justify-content: space-evenly;
     background-color: #ff7f00;
-    
-    
-   
+
+
+
 }
 
-
-/* .translate {
-    border-radius: 10px;
-    border: 1px solid rgba(2018, 81, 47, 0.479);
-    border-bottom: 2px solid rgb(218, 81, 47);
-    padding: 2px;
-    font-size: 15px;
-    font-family: 'Alef', sans-serif;
-} */
 .Layer-2 {
     width: 133px;
     height: 22px;
