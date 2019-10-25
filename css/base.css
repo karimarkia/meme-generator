@@ -9,12 +9,13 @@ h2,
 ul {
     margin: 0;
     padding: 0;
+    font-size: 1.1875rem;
 }
 
 body {
-    font-size: 18px;
-    font-family: 'Alef', sans-serif;
-    background-color: #eeeeee;
+   
+    font-family: monteserrat;
+    /* background-color: #eeeeee; */
 }
 
 ul {

@@ -6,6 +6,7 @@
 @import 'main.css';
 @import 'mediaQuery.css';
 @import 'about.css';
+@import 'eraseModal.css';
 
 @font-face {
     font-family: 'impact';
@@ -30,4 +31,9 @@
 @font-face {
     font-family: 'ShadowsIntoLight';
     src: url('../fonts/ShadowsIntoLight.ttf');
+}
+
+@font-face{
+    font-family: 'monteserrat';
+    src: url('../fonts/Montserrat-Regular.ttf');
 }

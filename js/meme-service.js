@@ -74,6 +74,11 @@ function deleteLine(line) {
     gMeme.txts.splice(lineIdx, 1);
 }
 
+function deleteAll() {
+    gMeme.selectedLine = undefined;
+    gMeme.txts = [];
+}
+
 //get some info from google with this function , text function
 function getLineCorectY() {
     var y;

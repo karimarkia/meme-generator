@@ -209,7 +209,7 @@ function onKeyPress(ev) {
         var elInput = document.querySelector('.textInput');
         elInput.blur();
         // render text editor and meme
-        // renderTextEditor();
+        renderTextEditor();
         renderMeme();
     }
 }
@@ -255,10 +255,43 @@ function onAddNewLine() {
 
 //delete line function
 function onEraseClick() {
-    gMeme.txts.forEach(txt => {
-        deleteLine(txt.id)
-    })
-    renderMeme()
+    // open modal
+    var elErase = document.querySelector('.erase-modal-container');
+    elErase.classList.add('open');
+
+    // update modal
+    // TODO: render according to lang
+    var elWhatToDelete = document.querySelector('.whatToDelete');
+    if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
+        elWhatToDelete.innerHTML = 'Are you sure you want to delete line?';
+    } else {
+        elWhatToDelete.innerHTML = 'Are you sure you want to delete all?';
+    }
+}
+
+function onDelete() {
+    // remove modal
+    removeModal();
+
+    // if there is a line selected and it's not empty - delete line
+    if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
+        deleteLine(gMeme.selectedLine);
+    } else {
+        deleteAll();
+    }
+
+    renderMeme();
+    renderTextEditor();
+}
+
+function onCancelDelete() {
+    // remove modal
+    removeModal();
+}
+
+function removeModal() {
+    var elErase = document.querySelector('.erase-modal-container');
+    elErase.classList.remove('open');
 }
 
 //change text color

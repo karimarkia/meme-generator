@@ -25,6 +25,8 @@ function createImgs() {
         createImg('img/img11.jpg', ['happy', 'man']),
         createImg('img/img12.jpg', ['man']),
         createImg('img/leo.jpg', ['happy', 'man']),
+        createImg('img/putin.jpg', ['happy', 'man']),
+        createImg('img/One.jpg', ['happy', 'man']),
     ];
 }
 
