@@ -1,6 +1,6 @@
 header {
     grid-area: header;
-    background: linear-gradient(to right, rgb(31, 31, 31), rgb(22, 191, 253));
+    background: linear-gradient(to right, rgb(31, 31, 31),#ff7f00);
     padding: 0 90px;
 }
 
