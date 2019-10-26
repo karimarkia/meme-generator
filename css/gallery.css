@@ -7,7 +7,8 @@
     padding: 5px;
     border-radius: 10px;
     border: 1px solid rgba(2018, 81, 47, 0.479);
-    font-family: 'Alef', sans-serif;
+    font-family: monteserrat;
+    outline: none;
 }
 
 .keywords-container ul {
@@ -45,12 +46,11 @@
     justify-content: center;
 }
 
-@media (max-width:420px) {
+@media (max-width:450px) {
     .gallery-items ul {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
-
 
 .gallery-items ul>li {
     display: inline
@@ -61,11 +61,11 @@
     max-width: 100%;
     width: 100%;
     height: 180px;
-    border-radius: 20px;
+    border-radius: 15px;
     object-fit: cover;
     transition: transform 0.5s;
 }
 
 .gallery-items ul li img:hover {
-    transform: scale(1.2); 
+    transform: scale(1.2);
 }

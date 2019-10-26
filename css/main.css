@@ -33,6 +33,7 @@ aside h2 {
 .editing-options select {
     cursor: pointer;
     transition: .3s;
+    color: #000000;
 }
 
 .text-editor a:hover,
@@ -67,7 +68,7 @@ aside h2 {
     font-size: 30px;
     width: 80%;
     border-bottom: 2px solid #ff7f00;
-    /* font-family: 'Alef', sans-serif; */
+    font-family: monteserrat;
 }
 
 .editing-options {
@@ -102,7 +103,7 @@ aside h2 {
 .fontSelector {
     width: 100%;
     font-size: 20px;
-    font-family: 'Alef', sans-serif;
+    font-family: monteserrat;
 }
 
 .sizenmove {
@@ -157,6 +158,7 @@ aside h2 {
 
 .btn-control {
     transition: .3s;
+
 }
 
 .btn-control label {
@@ -169,20 +171,33 @@ aside h2 {
 
 
 .controller a {
-    padding:0 15px;
+    padding: 0 15px;
     border-radius: 15px;
     text-decoration: none;
     color: black;
 }
 
+.shareBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: monteserrat;
+    font-size: 1.1rem;
+}
+
 
 footer {
     grid-area: footer;
-    background:linear-gradient(to right, rgb(31, 31, 31), rgb(22, 191, 253));;
+    background: linear-gradient(to right, rgb(31, 31, 31), rgb(22, 191, 253));
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 180px;
 
+}
+
+footer p {
+    color: #ffffff;
 }

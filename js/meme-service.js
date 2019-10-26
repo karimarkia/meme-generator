@@ -1,8 +1,8 @@
 'use strict';
 
-var gMeme;
+let gMeme;
 
-function createMeme(id) {
+const createMeme = (id) => {
     gMeme = {
         elImg: null,
         selectedImgId: id,
@@ -11,7 +11,7 @@ function createMeme(id) {
     };
 }
 
-function createLine(size, x, y, color, strokeColor, fontFamily) {
+const createLine = (size, x, y, color, strokeColor, fontFamily) => {
     let line = {
         id: gId++,
         txt: ' New Line ',
@@ -28,8 +28,7 @@ function createLine(size, x, y, color, strokeColor, fontFamily) {
 }
 
 // Text functions
-function addNewLine(currentValues) {
-
+const addNewLine = currentValues => {
     // if there is a line selected - remove selection
     if (gMeme.selectedLine) {
         checkIfLineEmpty(gMeme.selectedLine);
@@ -56,7 +55,7 @@ function addNewLine(currentValues) {
     gMeme.selectedLine = createLine(size, x, y, color, strokeColor, font);
 }
 
-function checkIfLineEmpty(line) {
+const checkIfLineEmpty = line => {
     // if line empty - erase it from array
     if (line.txt === '') {
         deleteLine(line);
@@ -66,22 +65,20 @@ function checkIfLineEmpty(line) {
     }
 }
 
-function deleteLine(line) {
-    var lineIdx = gMeme.txts.findIndex(currLine => {
-        return line.id === currLine.id;
-    })
+const deleteLine = line => {
+    let lineIdx = gMeme.txts.findIndex(currLine => line.id === currLine.id)
     gMeme.selectedLine = undefined;
     gMeme.txts.splice(lineIdx, 1);
 }
 
-function deleteAll() {
+const deleteAll = () => {
     gMeme.selectedLine = undefined;
     gMeme.txts = [];
 }
 
 //get some info from google with this function , text function
-function getLineCorectY() {
-    var y;
+const getLineCorectY = () => {
+    let y;
     // if its the first line - put it on top
     if (!gMeme.txts.length) {
         y = 65;
@@ -107,24 +104,24 @@ function getLineCorectY() {
     return y;
 }
 
-function changeColor(line, color) {
+const changeColor = (line, color) => {
     line.color = color
 }
 
-function changeStroke(line, stroke) {
+const changeStroke = (line, stroke) => {
     line.strokeColor = stroke
 }
 
-function changeFont(line, font) {
+const changeFont = (line, font) => {
     line.fontFamily = font
 }
 
-function changeFontSize(line, value) {
+const changeFontSize = (line, value) => {
     line.size += value
 }
 
-function moveCanvasEl(line, direction) {
-    var moveLenght = 10;
+const moveCanvasEl = (line, direction) => {
+    let moveLenght = 10;
     switch (direction) {
         case 'left':
             if (line.x + line.width > 30) {

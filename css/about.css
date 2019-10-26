@@ -25,7 +25,7 @@
 .about p {
     font-weight: 400;
     font-size: 15px;
-    /* line-height: 21.56px; */
+    color: #000000;
 }
 
 .about-container {
@@ -43,7 +43,6 @@
     min-height: 100px;
     width: 50%;
     min-width: 100px;
-    /* margin: 0 20px 0 0; */
 }
 
 .about-text-container {

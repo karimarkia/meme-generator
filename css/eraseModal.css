@@ -20,24 +20,25 @@
 .erase-modal-container * {
     visibility: inherit;
 }
-/* background:linear-gradient(to right,  rgb(31, 31, 31), rgb(22, 191, 253)); */
+
 .modal-content {
     width: 70vw;
     height: 200px;
     margin: 20px auto 0;
-    background:linear-gradient(to right,  rgb(31, 31, 31), rgb(22, 191, 253));
-    /* border: 2px solid rgb(218, 81, 47); */
+    background: linear-gradient(to right, rgb(31, 31, 31), rgb(22, 191, 253));
+
     border-radius: 0.83rem;
     padding: 20px 0;
 }
 
-.modal-content > h2 {
+.modal-content>h2 {
     color: #ffffff;
     line-height: 1.5;
     text-align: center;
 }
 
-.modal-content > h2, .modal-buttons {
+.modal-content>h2,
+.modal-buttons {
     margin: 0 10px;
 }
 

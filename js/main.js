@@ -1,12 +1,12 @@
 'use strict';
 
-var gCanvas;
-var gCtx;
-var gIsMoving;
-var gPrevPos;
+let gCanvas;
+let gCtx;
+let gIsMoving;
+let gPrevPos;
 
 //onLoad page
-function init() {
+const init = () => {
     gIsMoving = false;
     gPrevPos = {};
 
@@ -20,15 +20,15 @@ function init() {
 }
 
 //render functions
-function initGalleryAndRenderKeywords() {
+const initGalleryAndRenderKeywords = () => {
     renderGallery(gImgs);
     renderKeywords();
     renderKeywordsDatalist();
 }
 
-function renderGallery(img) {
-    var elGallery = document.querySelector('.gallery-items ul');
-    var strHTMLs = img.map(function (img) {
+const renderGallery = img => {
+    let elGallery = document.querySelector('.gallery-items ul');
+    let strHTMLs = img.map(function (img) {
         return ` <li class="gallery-img">
                         <img src="${img.url}" data-id="${img.id}" onclick="onSelectImg('${img.id}')">
                         </li>`
@@ -38,26 +38,25 @@ function renderGallery(img) {
 
 
 // KEYWORDS filter functions
-function onKeywordSelect(keyword) {
-    var elDatalist = document.querySelector('.keywords-input');
+const onKeywordSelect = (keyword) => {
+    let elDatalist = document.querySelector('.keywords-input');
     // if isn't selecting the same keyword
     if (gCurrKeyword !== keyword) {
         gCurrKeyword = keyword
         elDatalist.value = ''
         updateKeyWordsMap(keyword);
-        var imgs = getImgsByFilter(keyword);
+        let imgs = getImgsByFilter(keyword);
         renderGallery(imgs);
     }
     // renderKeywordsDatalist()
-    // console.log('1');
+
 }
 
 // render the dropdown
-function renderKeywordsDatalist() {
-    var elDatalist = document.querySelector('#keywords-list');
-    var keywords = Object.keys(gKeyWordsMap);
-    // console.log(keywords);
-    var strHtmls = keywords.map(keyword => {
+const renderKeywordsDatalist = () => {
+    let elDatalist = document.querySelector('#keywords-list');
+    let keywords = Object.keys(gKeyWordsMap);
+    let strHtmls = keywords.map(keyword => {
         return `
                 <option value="${keyword}">
                `;
@@ -66,12 +65,11 @@ function renderKeywordsDatalist() {
 }
 
 // render the li
-function renderKeywords() {
+const renderKeywords = () => {
     gKeyWordsMap = getFromStorage('keywordsMap');
-    var keywords = Object.keys(gKeyWordsMap);
-    var strHtmls = keywords.map(keyword => {
+    let keywords = Object.keys(gKeyWordsMap);
+    let strHtmls = keywords.map(keyword => {
         let keywordSize = gKeyWordsMap[keyword] * 2 + 15;
-        // console.log(keywordSize);
         if (keywordSize > 50) {
             keywordSize = 50;
         }
@@ -81,40 +79,37 @@ function renderKeywords() {
         </li>
         `;
     });
-    var elKeywords = document.querySelector('.keywords');
+    let elKeywords = document.querySelector('.keywords');
     elKeywords.innerHTML = strHtmls.join('');
 }
 
 // SELECT IMG functions
-function onSelectImg(id) {
+const onSelectImg = id => {
     document.body.classList.remove('gallery');
     document.querySelector('.gallery-container').style.display = 'none';
     document.querySelector('.about-container ').style.display = 'none';
     document.querySelector('main').style.display = 'flex';
     createMeme(id);
     initCanvas();
-    //did a change-need to check it 
     renderTextEditor();
     renderMeme();
 }
 
-function initCanvas() {
+const initCanvas = () => {
     gCanvas = document.getElementById('canvas');
     gCtx = gCanvas.getContext('2d')
-    var containerWidth = document.querySelector('main').offsetWidth;
-    var containerHeight = document.querySelector('main').offsetHeight;
+    let containerWidth = document.querySelector('main').offsetWidth;
+    let containerHeight = document.querySelector('main').offsetHeight;
     gCanvas.width = containerWidth;
     gCanvas.height = containerHeight;
-    // console.log(gCanvas.height);
 
     // set canvas width and height
-    var img;
+    let img;
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
 
-    var imageRatio = img.width / img.height;
-
-    var canvasComputed = {}
+    let imageRatio = img.width / img.height;
+    let canvasComputed = {}
     canvasComputed = {
         width: gCanvas.width,
         height: gCanvas.width / imageRatio
@@ -124,7 +119,7 @@ function initCanvas() {
     // width by the image sizes , got an idea from google 
     if (canvasComputed.height < gCanvas.height) {
         gCanvas.height = canvasComputed.height;
-        console.log(gCanvas.height);
+        console.log(gCanvas.height)
     } else {
         // if width is more than height - miminize width
         if (imageRatio >= 1) {
@@ -134,44 +129,45 @@ function initCanvas() {
     }
     // update aside to canvas height if desktop
     if (window.innerWidth >= 920) {
-        var asideEl = document.querySelector('aside');
+        let asideEl = document.querySelector('aside');
         // console.log(gCanvas.height);
         asideEl.style.height = `${gCanvas.height}px`;
     }
 }
 
-function setTextWidth(line) {
-    var txt = line.txt;
-    // console.log(txt);
+const setTextWidth = line => {
+    let txt = line.txt;
     gCtx.font = `${line.size}px ${line.fontFamily}`;
-    var width = gCtx.measureText(txt).width;
+    let width = gCtx.measureText(txt).width;
     // console.log(width);
     line.width = width;
 }
 
 // mark line around selected line
-function markLine(line) {
-    console.log('here');
+const markLine = line => {
     // If line is not empty
-    if (line.txt) {
-        gCtx.beginPath();
-        gCtx.moveTo(line.x - 10, line.y - line.size - 10);
-        gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 10);
-        gCtx.lineTo(line.x + line.width + 10, line.y + 15);
-        gCtx.lineTo(line.x - 10, line.y + 15);
-        gCtx.lineTo(line.x - 10, line.y - line.size - 10);
-        gCtx.strokeStyle = 'orange';
-        gCtx.stroke();
-    }
+    
+        
+            if (line.txt) {
+                gCtx.beginPath();
+                gCtx.moveTo(line.x - 10, line.y - line.size - 10);
+                gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 10);
+                gCtx.lineTo(line.x + line.width + 10, line.y + 15);
+                gCtx.lineTo(line.x - 10, line.y + 15);
+                gCtx.lineTo(line.x - 10, line.y - line.size - 10);
+                gCtx.strokeStyle = 'orange';
+                gCtx.stroke();
+            }
+    
 }
 
-function drawImgOnCanvas(img) {
+const drawImgOnCanvas = img => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 // Text functions
-function onEnterText(txt) {
-    var line = gMeme.selectedLine;
+const onEnterText = txt => {
+    let line = gMeme.selectedLine;
     // if there is no line selected - 
     // creates new line with current values
     if (!line) {
@@ -183,7 +179,7 @@ function onEnterText(txt) {
     renderMeme();
 }
 
-function getCurrentValues() {
+const getCurrentValues = () => {
     let elColor = document.querySelector('.colorInput');
     let color = elColor.value;
     console.log(color);
@@ -191,7 +187,6 @@ function getCurrentValues() {
     let strokeColor = elStrokeolor.value;
     let elFont = document.querySelector('.fontSelector');
     let font = elFont.value;
-    // console.log(font);
     return {
         color,
         strokeColor,
@@ -200,13 +195,13 @@ function getCurrentValues() {
 }
 
 // called when key is pressed while user on input line text
-function onKeyPress(ev) {
+const onKeyPress = ev => {
     if (ev.key === 'Enter') {
         // remove selection and current line
         gMeme.selectedLine.isSelected = false;
         gMeme.selectedLine = undefined;
         // get out of input
-        var elInput = document.querySelector('.textInput');
+        let elInput = document.querySelector('.textInput');
         elInput.blur();
         // render text editor and meme
         renderTextEditor();
@@ -215,12 +210,12 @@ function onKeyPress(ev) {
 }
 
 //onKeyPress function
-function renderTextEditor(line) {
-    var elHeadline = document.querySelector('.editorHeadline');
-    var elColor = document.querySelector('.colorInput');
-    var elStrokeColor = document.querySelector('.strokeColorInput');
-    var elTextInput = document.querySelector('.textInput');
-    var elFont = document.querySelector('.fontSelector');
+const renderTextEditor = line => {
+    let elHeadline = document.querySelector('.editorHeadline');
+    let elColor = document.querySelector('.colorInput');
+    let elStrokeColor = document.querySelector('.strokeColorInput');
+    let elTextInput = document.querySelector('.textInput');
+    let elFont = document.querySelector('.fontSelector');
 
     // if there is line selected
     if (line) {
@@ -239,29 +234,27 @@ function renderTextEditor(line) {
     }
 }
 
-function onAddNewLine() {
+const onAddNewLine = () => {
     // if there is a line selected - add new line with default values.
     // if not - add new line with current values that user chose
-    var currentValues;
+    let currentValues;
     if (!gMeme.selectedLine) {
         currentValues = getCurrentValues();
     }
     addNewLine(currentValues);
     // get focus on input
-    var elInput = document.querySelector('.textInput');
+    let elInput = document.querySelector('.textInput');
     elInput.focus();
     renderMeme();
 }
 
-//delete line function
-function onEraseClick() {
+//delete line const
+const onEraseClick = () => {
     // open modal
-    var elErase = document.querySelector('.erase-modal-container');
+    let elErase = document.querySelector('.erase-modal-container');
     elErase.classList.add('open');
-
     // update modal
-    // TODO: render according to lang
-    var elWhatToDelete = document.querySelector('.whatToDelete');
+    let elWhatToDelete = document.querySelector('.whatToDelete');
     if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
         elWhatToDelete.innerHTML = 'Are you sure you want to delete line?';
     } else {
@@ -269,66 +262,62 @@ function onEraseClick() {
     }
 }
 
-function onDelete() {
+const onDelete = () => {
     // remove modal
     removeModal();
-
     // if there is a line selected and it's not empty - delete line
     if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
         deleteLine(gMeme.selectedLine);
     } else {
         deleteAll();
     }
-
     renderMeme();
     renderTextEditor();
 }
 
-function onCancelDelete() {
-    // remove modal
+const onCancelDelete = () => {
     removeModal();
 }
 
-function removeModal() {
-    var elErase = document.querySelector('.erase-modal-container');
+const removeModal = () => {
+    let elErase = document.querySelector('.erase-modal-container');
     elErase.classList.remove('open');
 }
 
 //change text color
-function onChangeTextColor(color) {
+const onChangeTextColor = color => {
     if (gMeme.selectedLine) {
         changeColor(gMeme.selectedLine, color)
         renderMeme()
     }
 }
 
-function onChangeStrokeColor(stroke) {
+const onChangeStrokeColor = stroke => {
     if (gMeme.selectedLine) {
         changeStroke(gMeme.selectedLine, stroke)
         renderMeme()
     }
 }
 
-function onChangeFontFamily(font) {
-    // console.log(font);
+const onChangeFontFamily = font => {
     if (gMeme.selectedLine) {
         changeFont(gMeme.selectedLine, font)
         renderMeme()
     }
 }
 
-function onChangeFontSize(value) {
+const onChangeFontSize = value => {
     if (gMeme.selectedLine) {
         if (value === 'plus') changeFontSize(gMeme.selectedLine, 5);
         else if (value === 'minus') {
-            //cannot decrease font more if it 15
+            //cannot decrease font more if it's 15
             if (gMeme.selectedLine.size > 15) changeFontSize(gMeme.selectedLine, -5);
         }
         renderMeme()
     }
 }
 
-function returnToGallery(ev) {
+const returnToGallery = ev => {
     ev.preventDefault();
     document.body.classList.add('gallery');
     document.querySelector('main').style.display = 'none';
@@ -338,11 +327,12 @@ function returnToGallery(ev) {
     renderTextEditor()
 }
 
-function onClickCanvas(ev, isMobile = false) {
+const onClickCanvas = (ev, isMobile = false) => {
     ev.preventDefault()
-
-    var mouseX = ev.clientX - gCanvas.offsetLeft;
-    var mouseY = ev.clientY - gCanvas.offsetTop;
+    console.log(11);
+    
+    let mouseX = ev.clientX - gCanvas.offsetLeft;
+    let mouseY = ev.clientY - gCanvas.offsetTop;
     // if on mobile - different calc
     if (isMobile) {
         mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
@@ -351,11 +341,11 @@ function onClickCanvas(ev, isMobile = false) {
     gPrevPos.x = mouseX;
     gPrevPos.y = mouseY;
     // check if clicked on line
-    var line = gMeme.txts.find(line => {
+    let line = gMeme.txts.find(line => {
         return (mouseY < line.y + 15 && mouseY > line.y - line.size - 10 &&
             mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
-    var eventToAdd = 'mousemove';
+    let eventToAdd = 'mousemove';
     // if on mobile - different event
     if (isMobile) {
         eventToAdd = 'touchmove';
@@ -382,28 +372,32 @@ function onClickCanvas(ev, isMobile = false) {
         // update current line
         gMeme.selectedLine = line;
     }
+
+    // set(() => {
+    //     markLine(line)
+    // }, 3000);
     // render text editor according to line
     renderTextEditor(line);
     renderMeme();
 }
 
-function onMouseUp() {
+const onMouseUp = () => {
     if (gIsMoving) {
         gCanvas.removeEventListener('mousemove', drag, false);
         gIsMoving = false;
     }
 }
 
-function onTouchStart(ev) {
+const onTouchStart = (ev) => {
     onClickCanvas(ev, true);
 }
 
 // render meme
-function renderMeme() {
+const renderMeme = () => {
     // clean canvas
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     // render img
-    var img;
+    let img;
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
     drawImgOnCanvas(img);
@@ -425,24 +419,24 @@ function renderMeme() {
     })
 }
 
-function onMoveCanvasEl(direction) {
+const onMoveCanvasEl = direction => {
     if (gMeme.selectedLine) {
         moveCanvasEl(gMeme.selectedLine, direction);
         renderMeme();
     }
 }
 
-function drag(ev) {
+const drag = (ev) => {
     ev.preventDefault()
-    var mouseX = ev.clientX - gCanvas.offsetLeft;
-    var mouseY = ev.clientY - gCanvas.offsetTop;
+    let mouseX = ev.clientX - gCanvas.offsetLeft;
+    let mouseY = ev.clientY - gCanvas.offsetTop;
     // if on mobile - different calc
     if (ev.type === 'touchmove') {
         mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
         mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
     }
-    var newX = gMeme.selectedLine.x + (mouseX - gPrevPos.x);
-    var newY = gMeme.selectedLine.y + (mouseY - gPrevPos.y);
+    let newX = gMeme.selectedLine.x + (mouseX - gPrevPos.x);
+    let newY = gMeme.selectedLine.y + (mouseY - gPrevPos.y);
     // if in range of canvas (relevant for mobile)
     if (newX + gMeme.selectedLine.width > 0 && newX < gCanvas.width &&
         newY > 0 && newY - gMeme.selectedLine.size < gCanvas.height) {
@@ -454,26 +448,12 @@ function drag(ev) {
     }
 }
 
-// function onUploadImgBtn(ev) {
+// UPLOAD IMG consts
+const onUploadImgBtn = ev => {
+    handleImageFromInput(ev, uploadNewImg);
+}
 
-//     loadImageFromInput(ev, renderCanvas)
-// }
-
-// function loadImageFromInput(ev, onImageReady) {
-//     // document.querySelector('imgData').innerHTML = ''
-//     var reader = new FileReader();
-
-//     reader.onload = function (event) {
-//         var img = new Image();
-//         img.onload = onImageReady.bind(null, img)
-//         img.src = event.target.result;
-//     }
-//     reader.readAsDataURL(ev.target.files[0]);
-// }
-
-// function renderCanvas(img) {
-//     gCanvas.width = img.width;
-//     gCanvas.height = img.height;
-//     gCtx.drawImage(img, 0, 0);
-//     // ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-// }
+const toggleMenu = () => {
+    let elNav = document.querySelector('.main-menu-wrapper');
+    elNav.classList.toggle('open')
+}

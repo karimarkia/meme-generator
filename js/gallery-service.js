@@ -1,11 +1,11 @@
 'use strict';
 
-var gImgs;
-var gKeyWordsMap;
-var gCurrKeyword;
-var gId = 1;
+let gImgs;
+let gKeyWordsMap;
+let gCurrKeyword;
+let gId = 1;
 
-function createImgs() {
+const createImgs = () => {
     gImgs = [
         createImg('img/003.jpg', ['trump', 'stupid', 'man']),
         createImg('img/004.jpg', ['cute', 'dog', 'cute']),
@@ -30,7 +30,7 @@ function createImgs() {
     ];
 }
 
-function createImg(url, keyWords) {
+const createImg = (url, keyWords) => {
     return {
         id: gId++,
         url,
@@ -38,18 +38,18 @@ function createImg(url, keyWords) {
     };
 }
 
-function getImageById(id) {
+const getImageById = (id) => {
     return document.querySelector(`[data-id='${id}']`);
 }
 
-function updateKeyWordsMap(key) {
+const updateKeyWordsMap = key => {
     if (gKeyWordsMap[key]) {
         gKeyWordsMap[key]++;
         saveToStorage('keywordsMap', gKeyWordsMap);
     }
 }
 
-function creatKeyWordsMap() {
+const creatKeyWordsMap = () => {
     gKeyWordsMap = {};
     // go over imgs keywords and init keywords count to 1
     gImgs.forEach((img) => {
@@ -59,12 +59,19 @@ function creatKeyWordsMap() {
     });
 }
 
-function getImgsByFilter(keyword) {
-    var filteredImgs = gImgs.filter(img => {
+const getImgsByFilter = keyword => {
+    let filteredImgs = gImgs.filter(img => {
         return img.keyWords.some(imgKewWord => {
             return imgKewWord === keyword
         })
     })
-    // console.log(filteredImgs);
     return filteredImgs;
+}
+
+const uploadNewImg = imgEl => {
+    gMeme.elImg = imgEl;
+    deleteAll();
+    initCanvas();
+    renderTextEditor();
+    renderMeme();
 }
