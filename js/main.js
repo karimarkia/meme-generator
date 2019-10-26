@@ -145,20 +145,18 @@ const setTextWidth = line => {
 
 // mark line around selected line
 const markLine = line => {
-    // If line is not empty
-    
-        
-            if (line.txt) {
-                gCtx.beginPath();
-                gCtx.moveTo(line.x - 10, line.y - line.size - 10);
-                gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 10);
-                gCtx.lineTo(line.x + line.width + 10, line.y + 15);
-                gCtx.lineTo(line.x - 10, line.y + 15);
-                gCtx.lineTo(line.x - 10, line.y - line.size - 10);
-                gCtx.strokeStyle = 'orange';
-                gCtx.stroke();
-            }
-    
+    // If line is not empty   
+    if (line.txt) {
+        gCtx.beginPath();
+        gCtx.moveTo(line.x - 10, line.y - line.size - 10);
+        gCtx.lineTo(line.x + line.width + 10, line.y - line.size - 10);
+        gCtx.lineTo(line.x + line.width + 10, line.y + 15);
+        gCtx.lineTo(line.x - 10, line.y + 15);
+        gCtx.lineTo(line.x - 10, line.y - line.size - 10);
+        gCtx.strokeStyle = 'orange';
+        gCtx.stroke();
+    }
+
 }
 
 const drawImgOnCanvas = img => {
@@ -329,8 +327,6 @@ const returnToGallery = ev => {
 
 const onClickCanvas = (ev, isMobile = false) => {
     ev.preventDefault()
-    console.log(11);
-    
     let mouseX = ev.clientX - gCanvas.offsetLeft;
     let mouseY = ev.clientY - gCanvas.offsetTop;
     // if on mobile - different calc
@@ -362,6 +358,7 @@ const onClickCanvas = (ev, isMobile = false) => {
             gCanvas.removeEventListener('touchmove', drag, false);
         }
     }
+
     // if clicked on different line
     // (or not on any line when there was a line selected)
     if (gMeme.selectedLine !== line) {
@@ -373,9 +370,6 @@ const onClickCanvas = (ev, isMobile = false) => {
         gMeme.selectedLine = line;
     }
 
-    // set(() => {
-    //     markLine(line)
-    // }, 3000);
     // render text editor according to line
     renderTextEditor(line);
     renderMeme();
