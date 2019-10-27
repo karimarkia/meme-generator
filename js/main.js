@@ -115,8 +115,7 @@ const initCanvas = () => {
         height: gCanvas.width / imageRatio
     };
 
-    // set canvas width and height/this is what Yovel told us that we can do to set the canvas height and
-    // width by the image sizes , got an idea from google 
+    // set canvas width and height
     if (canvasComputed.height < gCanvas.height) {
         gCanvas.height = canvasComputed.height;
         console.log(gCanvas.height)
@@ -146,6 +145,8 @@ const setTextWidth = line => {
 // mark line around selected line
 const markLine = line => {
     // If line is not empty   
+    // console.log('here');
+    
     if (line.txt) {
         gCtx.beginPath();
         gCtx.moveTo(line.x - 10, line.y - line.size - 10);
@@ -371,6 +372,7 @@ const onClickCanvas = (ev, isMobile = false) => {
     }
 
     // render text editor according to line
+    // markLine(line)
     renderTextEditor(line);
     renderMeme();
 }

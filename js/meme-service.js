@@ -36,6 +36,7 @@ const addNewLine = currentValues => {
     }
     //create new line
     let size = 50;
+    // let x = gCanvas.width/2;
     let x = 20;
     let y = getLineCorectY()
     let color;
