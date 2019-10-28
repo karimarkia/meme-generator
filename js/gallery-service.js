@@ -61,10 +61,12 @@ const creatKeyWordsMap = () => {
 
 const getImgsByFilter = keyword => {
     let filteredImgs = gImgs.filter(img => {
-        return img.keyWords.some(imgKewWord => {
-            return imgKewWord === keyword
+        return img.keyWords.some(imgKeyWord => {
+            return imgKeyWord === keyword
         })
     })
+    // console.log(filteredImgs);
+    
     return filteredImgs;
 }
 

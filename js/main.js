@@ -4,6 +4,7 @@ let gCanvas;
 let gCtx;
 let gIsMoving;
 let gPrevPos;
+let gTimeOut;
 
 //onLoad page
 const init = () => {
@@ -38,7 +39,7 @@ const renderGallery = img => {
 
 
 // KEYWORDS filter functions
-const onKeywordSelect = (keyword) => {
+const onKeywordSelect = keyword => {
     let elDatalist = document.querySelector('.keywords-input');
     // if isn't selecting the same keyword
     if (gCurrKeyword !== keyword) {
@@ -146,7 +147,8 @@ const setTextWidth = line => {
 const markLine = line => {
     // If line is not empty   
     // console.log('here');
-    
+  
+    clearTimeout(gTimeOut)
     if (line.txt) {
         gCtx.beginPath();
         gCtx.moveTo(line.x - 10, line.y - line.size - 10);
@@ -156,6 +158,9 @@ const markLine = line => {
         gCtx.lineTo(line.x - 10, line.y - line.size - 10);
         gCtx.strokeStyle = 'orange';
         gCtx.stroke();
+         gTimeOut = setTimeout(() => {
+            renderMeme(true)
+        }, 3000);
     }
 
 }
@@ -181,7 +186,7 @@ const onEnterText = txt => {
 const getCurrentValues = () => {
     let elColor = document.querySelector('.colorInput');
     let color = elColor.value;
-    console.log(color);
+    // console.log(color);
     let elStrokeolor = document.querySelector('.strokeColorInput');
     let strokeColor = elStrokeolor.value;
     let elFont = document.querySelector('.fontSelector');
@@ -327,6 +332,8 @@ const returnToGallery = ev => {
 }
 
 const onClickCanvas = (ev, isMobile = false) => {
+    console.log(11);
+
     ev.preventDefault()
     let mouseX = ev.clientX - gCanvas.offsetLeft;
     let mouseY = ev.clientY - gCanvas.offsetTop;
@@ -389,7 +396,7 @@ const onTouchStart = (ev) => {
 }
 
 // render meme
-const renderMeme = () => {
+const renderMeme = (isMark) => {
     // clean canvas
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     // render img
@@ -402,7 +409,8 @@ const renderMeme = () => {
         if (line.txt) {
             if (line.isSelected) {
                 setTextWidth(line);
-                markLine(line);
+
+               if(!isMark) markLine(line);
             }
             gCtx.font = `${line.size}px ${line.fontFamily}`;
             // paint inner text 
@@ -442,6 +450,9 @@ const drag = (ev) => {
         gPrevPos.y = mouseY;
         renderMeme();
     }
+    // console.log(mouseX);
+    // console.log(mouseY);
+    
 }
 
 // UPLOAD IMG consts
