@@ -1,3 +1,3 @@
-# sprint2-meme
+# meme generator
 
 https://karimarkia.github.io/sprint2-meme/.
